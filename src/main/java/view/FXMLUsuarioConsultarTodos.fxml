@@ -74,12 +74,12 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <TableView fx:id="tblTabela" layoutX="15.0" layoutY="135.0" prefHeight="378.0" prefWidth="560.0">
+                        <TableView fx:id="tblTabela" layoutX="15.0" layoutY="135.0" prefHeight="378.0" prefWidth="539.0">
                           <columns>
                             <TableColumn fx:id="clnCod" editable="false" prefWidth="62.0" resizable="false" sortable="false" text="Cod" />
                             <TableColumn fx:id="clnNome" editable="false" prefWidth="220.0" resizable="false" sortable="false" text="Nome" />
-                              <TableColumn fx:id="clnCPF" editable="false" minWidth="0.0" prefWidth="147.5" resizable="false" sortable="false" text="CPF" />
-                              <TableColumn fx:id="clnTelefone" editable="false" prefWidth="130.5" resizable="false" sortable="false" text="Telefone" />
+                              <TableColumn fx:id="clnCPF" editable="false" minWidth="0.0" prefWidth="119.0" resizable="false" sortable="false" text="CPF" />
+                              <TableColumn fx:id="clnTelefone" editable="false" prefWidth="136.0" resizable="false" sortable="false" text="Telefone" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
