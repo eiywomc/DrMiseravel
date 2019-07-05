@@ -2,6 +2,11 @@ package model.vo;
 
 public class UsuarioVO {
 	
+	@Override
+	public String toString() {
+		return String.valueOf(idUsuario);
+	}
+
 	private int idUsuario;
 	private String nome;
 	private String cpf;
