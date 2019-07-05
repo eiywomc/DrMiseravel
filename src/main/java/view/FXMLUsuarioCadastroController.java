@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.vo.UsuarioVO;
@@ -39,7 +40,7 @@ public class FXMLUsuarioCadastroController {
 	@FXML
 	private Text lblLogin;
 	@FXML
-	private Text lblSenha;
+	private PasswordField pwSenha;
 	@FXML
 	private Text lblTitulo;
 	@FXML
@@ -65,7 +66,7 @@ public class FXMLUsuarioCadastroController {
 		usuarioVO.setCpf(txtCPF.getText());
 		usuarioVO.setTelefone(txtTelefone.getText());
 		usuarioVO.setLogin(txtLogin.getText());
-		usuarioVO.setSenha(txtSenha.getText());
+		usuarioVO.setSenha(pwSenha.getText());
 		
 		ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
 		controladoraUsuario.cadastrarUsuarioController(usuarioVO);
@@ -74,7 +75,7 @@ public class FXMLUsuarioCadastroController {
 		txtCPF.setText("");
 		txtTelefone.setText("");
 		txtLogin.setText("");
-		txtSenha.setText("");
+		pwSenha.setText("");
 		
 		
 	}
