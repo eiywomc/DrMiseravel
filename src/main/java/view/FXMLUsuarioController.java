@@ -61,4 +61,14 @@ public class FXMLUsuarioController {
 		
 		//loadConsultarTodos
 	}
+	
+	public void loadConsultarUm(ActionEvent event) throws IOException {
+		Parent parent = FXMLLoader.load(getClass().getResource("FXMLUsuarioConsultarUm.fxml"));
+		Scene scene = new Scene(parent, 800, 600);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
+		
+		//loadConsultarUm
+	}
 }
