@@ -72,7 +72,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Button layoutX="219.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Um" textFill="#e1e5ee">
+                        <Button layoutX="219.0" layoutY="277.0" mnemonicParsing="false" onAction="#loadConsultarUm" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Um" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
