@@ -8,7 +8,7 @@ public class DespesaVO extends LancamentoVO{
 	
 	private LocalDate dataVencimento;
 	private LocalDate dataPagamento;
-	private String  categoria;
+	private String categoria;
 	public DespesaVO() {
 		super();
 		// TODO Auto-generated constructor stub
