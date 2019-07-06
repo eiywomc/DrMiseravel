@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLUsuarioConsultarUmController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLUsuarioConsultarTodosController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -30,22 +30,27 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Text>
-                        <Button layoutX="4.0" layoutY="189.0" mnemonicParsing="false" onAction="#loadUsuario" prefHeight="32.0" prefWidth="212.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75; -fx-border-color: #e1e5ee;" text="Usuário">
+                        <Button layoutX="51.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadUsuario" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75;" text="Usuário">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="3.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadReceita" prefHeight="32.0" prefWidth="212.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75; -fx-border-color: #e1e5ee;" text="Receita">
+                        <Button layoutX="50.0" layoutY="236.0" mnemonicParsing="false" onAction="#loadReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75;" text="Receita">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="3.0" layoutY="288.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="212.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75; -fx-border-color: #e1e5ee;" text="Despesa">
+                        <Button layoutX="50.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75;" text="Despesa">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="3.0" layoutY="339.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="212.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75; -fx-border-color: #e1e5ee;" text="Relatório">
+                        <Button layoutX="50.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75;" text="Categoria">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="50.0" layoutY="394.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #e1e5ee; -fx-opacity: 0.75;" text="Relatório">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -59,43 +64,24 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="614.0" prefWidth="726.0" style="-fx-background-color: #e1e5ee;" GridPane.columnIndex="1">
                      <children>
-                        <AnchorPane layoutX="-12.0" layoutY="45.0" prefHeight="531.0" prefWidth="554.0" style="-fx-border-color: #2a324b;" />
-                        <AnchorPane layoutX="75.0" layoutY="145.0" prefHeight="282.0" prefWidth="464.0">
-                           <children>
-                              <Text layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                              <Text fx:id="lblCPF" layoutX="11.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF" wrappingWidth="48.63671875" />
-                              <Text fx:id="lblTelefone" layoutX="12.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone" />
-                              <Text fx:id="txtCPF" layoutX="8.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.0">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="txtTelefone" layoutX="8.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.0">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="txtNome" layoutX="7.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="405.0000008940697">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ComboBox fx:id="cmbCodigo" layoutX="7.0" layoutY="2.0" onAction="#consultarUsuario" prefWidth="150.0" promptText="Selecione o Código" style="-fx-background-color: #e1e5ee; -fx-border-color: #2a324b;">
-                                 <tooltip>
-                                    <Tooltip text="Escolha o Id do Usuário a ser consultado" />
-                                 </tooltip></ComboBox>
-                           </children>
-                        </AnchorPane>
-                        <Button fx:id="btnVoltar" layoutX="233.0" layoutY="514.0" mnemonicParsing="false" onAction="#voltarUsuario" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-border-color: #2Ca324b;" text="Voltar" textFill="#e1e5ee">
+                        <Button fx:id="btnVoltar" layoutX="227.0" layoutY="542.0" mnemonicParsing="false" onAction="#voltarUsuario" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Voltar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Text fx:id="lblTitulo" fill="#2a324b" layoutX="194.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultar Um Usuário" wrappingWidth="263.40771484375">
+                        <Text fx:id="lblTitulo" fill="#2a324b" layoutX="175.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consulta de Todos Usuários" wrappingWidth="263.40771484375">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
+                        <TableView fx:id="tblTabela" layoutX="15.0" layoutY="135.0" prefHeight="378.0" prefWidth="539.0">
+                          <columns>
+                            <TableColumn fx:id="clnCod" editable="false" prefWidth="62.0" resizable="false" sortable="false" text="Cod" />
+                            <TableColumn fx:id="clnNome" editable="false" prefWidth="220.0" resizable="false" sortable="false" text="Nome" />
+                              <TableColumn fx:id="clnCPF" editable="false" minWidth="0.0" prefWidth="119.0" resizable="false" sortable="false" text="CPF" />
+                              <TableColumn fx:id="clnTelefone" editable="false" prefWidth="136.0" resizable="false" sortable="false" text="Telefone" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
                </children>
             </GridPane>
