@@ -57,32 +57,32 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="614.0" prefWidth="551.0" style="-fx-background-color: #e1e5ee;" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="btnCadastrar" layoutX="213.0" layoutY="212.0" mnemonicParsing="false" onAction="#loadCadastrarReceita" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
+                        <Button fx:id="btnCadastrar" layoutX="213.0" layoutY="212.0" mnemonicParsing="false" onAction="#loadCadastrarDespesa" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Text fill="#2a324b" layoutX="181.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU Receita" wrappingWidth="261.2410888671875">
+                        <Text fill="#2a324b" layoutX="181.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU Despesa" wrappingWidth="261.2410888671875">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnConsultar" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" onAction="#loadConsultarReceita" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Receita" textFill="#e1e5ee">
+                        <Button fx:id="btnConsultar" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" onAction="#loadConsultarDespesa" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Despesa" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnAtualizar" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadAtualizarReceita" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
+                        <Button fx:id="btnAtualizar" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadAtualizarDespesa" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnExcluir" layoutX="213.0" layoutY="415.0" mnemonicParsing="false" onAction="#loadExcluirReceita" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Excluir" textFill="#e1e5ee">
+                        <Button fx:id="btnExcluir" layoutX="213.0" layoutY="415.0" mnemonicParsing="false" onAction="#loadExcluirDespesa" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Excluir" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnConsultarTodos" layoutX="213.0" layoutY="313.0" mnemonicParsing="false" onAction="#loadConsultarTodosReceitas" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Todos" textFill="#e1e5ee">
+                        <Button fx:id="btnConsultarTodos" layoutX="213.0" layoutY="313.0" mnemonicParsing="false" onAction="#loadConsultarTodasDespesas" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar Todos" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
