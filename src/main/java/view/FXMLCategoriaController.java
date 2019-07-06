@@ -26,6 +26,7 @@ public class FXMLCategoriaController {
 	@FXML
 	private Text lblTitulo;
 	@FXML
+	//
 	private Text lblTitulo1;
 	@FXML
 	private TextField txtDescricao;
