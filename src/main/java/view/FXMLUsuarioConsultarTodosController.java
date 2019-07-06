@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import controller.ControladoraUsuario;
@@ -24,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
@@ -54,22 +56,42 @@ public class FXMLUsuarioConsultarTodosController implements Initializable{
 	public void carregarTableViewUsuarios() {
 		ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
 		listaUsuariosVO = controladoraUsuario.consultarTodosUsuariosController();
-//		
-//		UsuarioVO u1 = new UsuarioVO( 1, "Maick", "062524242","991686182", "MM", "SS");
-//		UsuarioVO u2 = new UsuarioVO( 1, "Janis", "062524242","991686182", "MM", "SS");
-//		listaUsuariosVO.add(u1);
-//		listaUsuariosVO.add(u2);
 		
 		observableListUsuarios = FXCollections.observableArrayList(listaUsuariosVO);
 		clnCod.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
 		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		clnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		clnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-
+		
 		
 		
 		
 		tblTabela.setItems(observableListUsuarios);
+		
+		
+		
+		
+		
+		
+	}
+	
+	public void teste(ActionEvent event) {
+//
+//		TableView<UsuarioVO> searchResultsTable;
+//		searchResultsTable.selectionModelProperty().addListener((Observable observable) -> {
+//			int index = tblTabela.getSelectionModel().getSelectedIndex();
+//			UsuarioVO usuario = tblTabela.get(index);
+//		});
+//		
+//			
+//		ArrayList<UsuarioVO> lista = new ArrayList<UsuarioVO>();
+//		ObservableList<TableViewSelectionModel<UsuarioVO>> observableListUsuarios2;
+//		observableListUsuarios2 = FXCollections.observableArrayList(tblTabela.getSelectionModel());
+//		observableListUsuarios2.
+//		//usuarioVO = (UsuarioVO) observableListUsuarios2
+//		
+//		System.out.println((observableListUsuarios2.toString()));
+//		//lista = tblTabela.getSelectionModel();
 	}
 	
 	// Event Listener on Button.onAction
