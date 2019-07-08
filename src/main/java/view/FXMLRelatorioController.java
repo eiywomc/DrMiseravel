@@ -265,4 +265,116 @@ public class FXMLRelatorioController {
 		
 
 	}
+	
+	public void saldoTotal(ActionEvent event) {
+		
+		//converter double para Reais
+		Locale ptBr = new Locale("pt", "BR");
+				
+		/* O itext ao gerar um pdf com mesmo nome de arquivo simplesmente substitui,
+		* para resolver isso utiliza-se a hora do computador para botar no fim do no
+		* do arquivo para cada arquivo ser unico pelo contexto necessario.
+		*/
+		String idArquivo = String.valueOf(System.currentTimeMillis());
+		String nomeArquivo = txtNomeArquivo.getText()+idArquivo+".pdf";
+		
+		
+		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
+		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = controladoraRelatorio
+				
+		// Cria documento com o tamanho desejado
+		Document document = new Document(PageSize.A4);
+		
+		try {
+			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
+			
+
+			document.addTitle("Total Despesas");
+			document.open();
+			// cria padrão de fonte para título
+			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
+			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph vazio = new Paragraph(" "); 
+			Paragraph h2 = new Paragraph("TOTAL DE DESPESAS");
+			//centraliza cabeçalho 
+			h1.setAlignment(Element.ALIGN_CENTER);
+			h2.setAlignment(Element.ALIGN_CENTER);
+			document.add(h1);
+			document.add(vazio);
+			document.add(h2);
+			// cria tabela
+			// cria cabecalho da table
+		    PdfPTable tabela = new PdfPTable(3);
+		    tabela.setWidthPercentage(400 / 5.23f);
+		    tabela.setWidths(new int[]{1, 3, 2});
+		    
+
+		    
+		    // insere titulo da tabela
+		    //Paragraph t1 = new Paragraph("Table 1");
+		    PdfPCell cell;
+
+	        document.add(vazio);
+	        document.add(vazio);
+	        document.add(vazio);
+	        
+	        Font boldBranca = new Font(FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+
+	        
+	        cell = new PdfPCell();
+	        cell.setColspan(3);
+//	        cell.setRowspan(2);
+	        cell = new PdfPCell(new Paragraph("  ID", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Nome", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Total Despesas", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        			// preenche celulas da tabela
+			for(int i = 0; i < listaLancamentosUsuarioDTO.size(); i++) {
+		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaLancamentosUsuarioDTO.get(i).getIdUsuario())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+listaLancamentosUsuarioDTO.get(i).getNome()));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaLancamentosUsuarioDTO.get(i).getValor())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+			}
+			document.add(tabela);
+			
+			document.add(vazio);
+
+			document.add(vazio);
+			Paragraph bottom = new Paragraph("Total de linhas: "+ listaLancamentosUsuarioDTO.size() + ".");
+			bottom.setAlignment(Element.ALIGN_CENTER);
+			Paragraph bottom2 = new Paragraph(" ");
+			bottom2.setAlignment(Element.ALIGN_CENTER);
+			document.add(bottom);
+			document.add(bottom2);
+			
+			
+			
+			
+			//gera aviso que o pdf foi gerado.
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Relatório - Dr. Muquirana");
+			alert.setHeaderText("Arquivo "+txtNomeArquivo.getText()+".pdf Gerado.");
+			alert.setContentText("Operação bem sucedida");
+
+			alert.showAndWait();
+			
+		}
+		catch(Exception e) {
+			// AtualizarMensagem Erro			
+			System.out.println(e);
+		}
+		document.close();
+		
+
+	}
 }

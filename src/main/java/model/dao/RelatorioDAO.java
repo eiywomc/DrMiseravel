@@ -168,10 +168,10 @@ public class RelatorioDAO {
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
 		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = new ArrayList<SaldoUsuarioDTO>();
-		String query = "SELECT u.idusuario as ID, u.nome as USUARIO, sum(d.valor) as DESPESAS, sum(r.valor) as RECEITAS, (sum(r.valor)-sum(d.valor) as SALDO " 
-				+ " FROM usuario u INNER JOIN despesa d ON despesa.idusuario = usuario.idusuario INNER JOIN receita r ON receita.idusuario = usuario.idusuario " 
-				+ " WHERE u.idusuario = d.idusuario " 
-				+ " GROUP BY u.idusuario ";
+		String query = "SELECT A.IDUSUARIO, A.NOME, A.RECEITA, B.DESPESA, (A.RECEITA-B.DESPESA) AS SALDO " + 
+				"FROM A " + 
+				"INNER JOIN B ON " + 
+				"A.IDUSUARIO = B.IDUSUARIO ";
 		try{
 			resultado = stmt.executeQuery(query);
 			while(resultado.next()){
