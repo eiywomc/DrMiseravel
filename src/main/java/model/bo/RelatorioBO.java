@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.dao.RelatorioDAO;
 import model.dto.LancamentoUsuarioDTO;
+import model.dto.SaldoUsuarioDTO;
 
 public class RelatorioBO {
 
@@ -50,6 +51,15 @@ public class RelatorioBO {
 			System.out.println("\nLista de lançamento de despesas do usuário abertas por período está vazia.");
 		}
 		return listaLancamentoUsuarioDTO;
+	}
+	
+	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoBO(SaldoUsuarioDTO saldoUsuarioDTO) {
+		RelatorioDAO relatorioDAO = new RelatorioDAO();
+		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = relatorioDAO.gerarRelatorioSaldoDAO(saldoUsuarioDTO);
+		if (listaSaldoDTO.isEmpty()) {
+			System.out.println("\nLista de lançamento de despesas e receitasdo usuário abertas por período está vazia.");
+		}
+		return listaSaldoDTO;
 	}
 
 }

@@ -69,11 +69,10 @@ public class LancamentoUsuarioDTO {
 		this.dataFimPesquisa = dataFimPesquisa;
 	}
 
-	public void imprimir() {
-		System.out.printf("%3d   %-40s   %10s  \n",
-				this.getIdUsuario(),
-				this.getNome(),
-				df.format(this.getValor()));
+	public String imprimir() {
+		
+				return (this.getIdUsuario() + "     "	 +		this.getNome() +  "        "	 +
+				this.getValor());
 		
 	}
 	

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.dto.LancamentoUsuarioDTO;
+import model.dto.SaldoUsuarioDTO;
 
 
 public class RelatorioDAO {
@@ -160,6 +161,37 @@ public class RelatorioDAO {
 			Banco.closeConnection(conn);
 		}
 		return listaLancamentoUsuarioDTO;
+	}
+
+	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoDAO(SaldoUsuarioDTO saldoUsuarioDTO) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = new ArrayList<SaldoUsuarioDTO>();
+		String query = "SELECT u.idusuario as ID, u.nome as USUARIO, sum(d.valor) as DESPESAS, sum(r.valor) as RECEITAS, (sum(r.valor)-sum(d.valor) as SALDO " 
+				+ " FROM usuario u INNER JOIN despesa d ON despesa.idusuario = usuario.idusuario INNER JOIN receita r ON receita.idusuario = usuario.idusuario " 
+				+ " WHERE u.idusuario = d.idusuario " 
+				+ " GROUP BY u.idusuario ";
+		try{
+			resultado = stmt.executeQuery(query);
+			while(resultado.next()){
+				SaldoUsuarioDTO saldoUsuario = new SaldoUsuarioDTO();
+				saldoUsuario.setId(Integer.parseInt(resultado.getString(1)));
+				saldoUsuario.setNome(resultado.getString(2));
+				saldoUsuario.setTotalDespesa(Double.parseDouble(resultado.getString(3)));
+				saldoUsuario.setTotalReceita(Double.parseDouble(resultado.getString(4)));
+				saldoUsuario.setTotalSaldo(Double.parseDouble(resultado.getString(5)));
+				listaSaldoDTO.add(saldoUsuario);
+			}
+		} catch (SQLException e){
+			System.out.println("Erro ao executar a Query do Relatório Total de Despesas dos Usuários.");
+			System.out.println("Erro: " + e.getMessage());
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		return listaSaldoDTO;
 	}
 
 }
