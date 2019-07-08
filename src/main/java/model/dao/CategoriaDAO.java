@@ -87,7 +87,7 @@ public class CategoriaDAO {
 		Connection conn = Banco.getConnection();		
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
-		String query = "DELETE FROM categoria WHERE idCategoria = " + categoriaVO.getIdCategoria(); 
+		String query = "DELETE FROM categoria WHERE descricao = '" + categoriaVO.getDescricao()+ "'"; 
 		
 		
 		try {
@@ -132,7 +132,7 @@ public class CategoriaDAO {
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
 		ArrayList<CategoriaVO> categoriasVO = new ArrayList<CategoriaVO>();
-		String query = "SELECT idcategoria, descrica  FROM categoria";
+		String query = "SELECT idcategoria, descricao  FROM categoria";
 		try {
 			resultado = stmt.executeQuery(query);
 			while (resultado.next()) {

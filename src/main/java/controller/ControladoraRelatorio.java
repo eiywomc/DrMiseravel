@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.bo.RelatorioBO;
 import model.dto.LancamentoUsuarioDTO;
+import model.dto.SaldoUsuarioDTO;
 
 public class ControladoraRelatorio {
 
@@ -32,4 +33,8 @@ public class ControladoraRelatorio {
 		return relatorioBO.gerarRelatorioTotalDespesasUsuariosAbertasPorPeriodoBO(lancamentoUsuarioDTO);
 	}
 
+	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoTotalController() {
+		RelatorioBO relatorioBO = new RelatorioBO();
+		return relatorioBO.gerarRelatorioSaldoBO();
+	}
 }

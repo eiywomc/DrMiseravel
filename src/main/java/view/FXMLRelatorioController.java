@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.dto.LancamentoUsuarioDTO;
+import model.dto.SaldoUsuarioDTO;
 import javafx.scene.control.TextField;
 
 import java.io.FileOutputStream;
@@ -280,7 +281,8 @@ public class FXMLRelatorioController {
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
-		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = controladoraRelatorio
+		
+		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = controladoraRelatorio.gerarRelatorioSaldoTotalController();
 				
 		// Cria documento com o tamanho desejado
 		Document document = new Document(PageSize.A4);
@@ -304,9 +306,9 @@ public class FXMLRelatorioController {
 			document.add(h2);
 			// cria tabela
 			// cria cabecalho da table
-		    PdfPTable tabela = new PdfPTable(3);
-		    tabela.setWidthPercentage(400 / 5.23f);
-		    tabela.setWidths(new int[]{1, 3, 2});
+		    PdfPTable tabela = new PdfPTable(5);
+		    tabela.setWidthPercentage(500 / 5.23f);
+		    tabela.setWidths(new int[]{1, 3, 2, 2, 2});
 		    
 
 		    
@@ -330,19 +332,32 @@ public class FXMLRelatorioController {
 	        cell = new PdfPCell(new Paragraph("  Nome", boldBranca));
 	        cell.setBackgroundColor(BaseColor.BLACK);
 	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Total Receitas", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
 	        cell = new PdfPCell(new Paragraph("  Total Despesas", boldBranca));
 	        cell.setBackgroundColor(BaseColor.BLACK);
 	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Saldo Final", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
 	        			// preenche celulas da tabela
-			for(int i = 0; i < listaLancamentosUsuarioDTO.size(); i++) {
-		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaLancamentosUsuarioDTO.get(i).getIdUsuario())));
+			for(int i = 0; i < listaSaldoDTO.size(); i++) {
+		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaSaldoDTO.get(i).getId())));
 		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		        tabela.addCell(cell);
-		        cell = new PdfPCell(new Paragraph(" "+listaLancamentosUsuarioDTO.get(i).getNome()));
+		        cell = new PdfPCell(new Paragraph(" "+listaSaldoDTO.get(i).getNome()));
 		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		        tabela.addCell(cell);
-		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaLancamentosUsuarioDTO.get(i).getValor())));
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaSaldoDTO.get(i).getTotalReceita())));
 		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaSaldoDTO.get(i).getTotalDespesa())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaSaldoDTO.get(i).getTotalSaldo())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        if (listaSaldoDTO.get(i).getTotalSaldo() < 0 ) cell.setBackgroundColor(BaseColor.YELLOW);
 		        tabela.addCell(cell);
 			}
 			document.add(tabela);
@@ -350,7 +365,7 @@ public class FXMLRelatorioController {
 			document.add(vazio);
 
 			document.add(vazio);
-			Paragraph bottom = new Paragraph("Total de linhas: "+ listaLancamentosUsuarioDTO.size() + ".");
+			Paragraph bottom = new Paragraph("Total de linhas: "+ listaSaldoDTO.size() + ".");
 			bottom.setAlignment(Element.ALIGN_CENTER);
 			Paragraph bottom2 = new Paragraph(" ");
 			bottom2.setAlignment(Element.ALIGN_CENTER);

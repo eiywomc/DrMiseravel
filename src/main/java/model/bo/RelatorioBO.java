@@ -53,9 +53,9 @@ public class RelatorioBO {
 		return listaLancamentoUsuarioDTO;
 	}
 	
-	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoBO(SaldoUsuarioDTO saldoUsuarioDTO) {
+	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoBO() {
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
-		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = relatorioDAO.gerarRelatorioSaldoDAO(saldoUsuarioDTO);
+		ArrayList<SaldoUsuarioDTO> listaSaldoDTO = relatorioDAO.gerarRelatorioSaldoDAO();
 		if (listaSaldoDTO.isEmpty()) {
 			System.out.println("\nLista de lançamento de despesas e receitasdo usuário abertas por período está vazia.");
 		}

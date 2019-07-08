@@ -163,7 +163,7 @@ public class RelatorioDAO {
 		return listaLancamentoUsuarioDTO;
 	}
 
-	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoDAO(SaldoUsuarioDTO saldoUsuarioDTO) {
+	public ArrayList<SaldoUsuarioDTO> gerarRelatorioSaldoDAO() {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
