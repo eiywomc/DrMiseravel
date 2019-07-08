@@ -75,14 +75,7 @@ public class CategoriaBO {
 		return categoriasVO;
 	}
 
-	public CategoriaVO consultarCategoriaBO(CategoriaVO categoriaVO) {
-		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		CategoriaVO categoria = categoriaDAO.consultarCategoriaDAO(categoriaVO);
-		if (categoriaVO == null) {
-			System.out.println("\nCategoria não localizado.");
-		} 
-		return categoria;
-	}
+
 
 
 }

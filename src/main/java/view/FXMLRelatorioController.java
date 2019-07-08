@@ -83,6 +83,15 @@ public class FXMLRelatorioController {
 		window.show();
 	}
 	// Event Listener on Button[#btnDespesa].onAction
+		@FXML
+		public void loadCategoria(ActionEvent event) throws IOException {
+			Parent parent = FXMLLoader.load(getClass().getResource("FXMLCategoria.fxml"));
+			Scene scene = new Scene(parent, 800, 600);
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			window.setScene(scene);
+			window.show();
+		}
+	// Event Listener on Button[#btnDespesa].onAction
 	@FXML
 	public void loadDespesa(ActionEvent event) throws IOException {
 		Parent parent = FXMLLoader.load(getClass().getResource("FXMLDespesa.fxml"));
