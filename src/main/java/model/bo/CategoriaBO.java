@@ -17,7 +17,7 @@ public class CategoriaBO {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Erro - Dr. Miseravel");
 			alert.setHeaderText("Erro ao cadastrar categoria.");
-			alert.setContentText("Categoria já cadastrado no sistema.");
+			alert.setContentText("Categoria " + categoriaVO.getDescricao() + " já cadastrado no sistema.");
 
 			alert.showAndWait();
 		} else {
@@ -38,16 +38,17 @@ public class CategoriaBO {
 
 	public void excluirCategoriaBO(CategoriaVO categoriaVO) {
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		if (categoriaDAO.verificarRegistroPorIdCategoria(categoriaVO.getIdCategoria())) {
-			int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
-			if (resultado == 1) {
-				System.out.println("\nCategoria excluído com sucesso.");
-			} else {
-				System.out.println("\nNão foi possível excluir a categoria.");
-			}
-		} else {
-			System.out.println("\nCategoria não existe na base de dados.");
-		}
+//		int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
+//		if (categoriaDAO.verificarRegistroPorDescricap(categoriaVO.getDescricao())) {
+//			int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
+//			if (resultado == 1) {
+//				System.out.println("\nCategoria excluído com sucesso.");
+//			} else {
+//				System.out.println("\nNão foi possível excluir a categoria.");
+//			}
+//		} else {
+//			System.out.println("\nCategoria não existe na base de dados.");
+//		}
 
 	}
 
@@ -75,14 +76,7 @@ public class CategoriaBO {
 		return categoriasVO;
 	}
 
-	public CategoriaVO consultarCategoriaBO(CategoriaVO categoriaVO) {
-		CategoriaDAO categoriaDAO = new CategoriaDAO();
-		CategoriaVO categoria = categoriaDAO.consultarCategoriaDAO(categoriaVO);
-		if (categoriaVO == null) {
-			System.out.println("\nCategoria não localizado.");
-		} 
-		return categoria;
-	}
+
 
 
 }

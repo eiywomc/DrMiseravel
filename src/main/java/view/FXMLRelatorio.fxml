@@ -84,6 +84,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
+                        <Button fx:id="btnSaldoTotal1" layoutX="36.0" layoutY="394.0" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="TesteCategoria" textFill="#e1e5ee">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children></AnchorPane>
                </children>
             </GridPane>
