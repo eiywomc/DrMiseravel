@@ -1,6 +1,8 @@
 package view;
 
-import java.text.SimpleDateFormat;  
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;  
 import java.util.Locale;
 import javafx.fxml.FXML;
@@ -13,11 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.vo.ReceitaVO;
+import model.vo.UsuarioVO;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 import controller.ControladoraReceita;
+import controller.ControladoraUsuario;
 import javafx.event.ActionEvent;
 
 public class FXMLReceitaConsultarCodReceitaController {
@@ -113,21 +117,28 @@ public class FXMLReceitaConsultarCodReceitaController {
 	// Event Listener on Button[#btnConsultarReceitaPorCod].onAction
 	@FXML
 	public void consultarReceitaPorCodigo(ActionEvent event) {
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		// SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		Locale ptBr = new Locale("pt", "BR");
+		
 		ReceitaVO receitaVO = new ReceitaVO();
 		
 		receitaVO.setId(Integer.parseInt(cmbCodigo.getText())); 
 		ControladoraReceita controladoraReceita = new ControladoraReceita();
 		ReceitaVO idReceita = controladoraReceita.consultarReceitaController(receitaVO);
 		
+		UsuarioVO usuario = new UsuarioVO();
+		
+		usuario.setIdUsuario(idReceita.getIdUsuario());
+		
+		ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
+		usuario = controladoraUsuario.consultarUsuarioCOntroller(usuario);
 		
 		txtCodUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
-		// txtNomeUsuario.setText("Falta fazer a pesquisa do nome");
-		txtNomeUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
+		txtNomeUsuario.setText(usuario.getNome());
 		txtDescricao.setText(idReceita.getDescricao());
-		txtData.setText(formatter.format(idReceita.getDateReceita()));
-		txtValor.setText(Double.toString(idReceita.getValor()));
+		txtData.setText(idReceita.getDateReceita().format(dataFormatter));
+		txtValor.setText(NumberFormat.getCurrencyInstance(ptBr).format(idReceita.getValor()));
+
 		
 	}
 }
