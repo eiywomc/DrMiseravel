@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 
 import model.bo.DespesaBO;
-import model.bo.UsuarioBO;
 import model.vo.DespesaVO;
 import model.vo.UsuarioVO;
 

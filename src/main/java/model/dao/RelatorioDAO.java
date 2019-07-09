@@ -4,14 +4,17 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import model.dto.LancamentoUsuarioDTO;
 import model.dto.SaldoUsuarioDTO;
 
 
-public class RelatorioDAO {
 
+public class RelatorioDAO {
+	DateTimeFormatter formataDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	
 	public ArrayList<LancamentoUsuarioDTO> gerarRelatorioTotalReceitasUsuarioDAO() {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
@@ -109,8 +112,8 @@ public class RelatorioDAO {
 		String query = "SELECT u.idusuario as ID, u.nome as USUARIO, sum(d.valor) as DESPESAS " 
 				+ " FROM usuario u, despesa d " 
 				+ " WHERE u.idusuario = d.idusuario " 
-				+ " and d.datavencimento >= '" + lancamentoUsuarioDTO.getDataInicioPesquisa() + "' "
-				+ " and d.datavencimento <= '" + lancamentoUsuarioDTO.getDataFimPesquisa() + "' "
+				+ " and d.datavencimento >= '" + lancamentoUsuarioDTO.getDataInicioPesquisa().format(formataDate) + "' "
+				+ " and d.datavencimento <= '" + lancamentoUsuarioDTO.getDataFimPesquisa().format(formataDate) + "' "
 				+ " GROUP BY u.idusuario ";
 		try{
 			resultado = stmt.executeQuery(query);
