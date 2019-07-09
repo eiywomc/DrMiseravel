@@ -120,9 +120,11 @@ public class FXMLReceitaConsultarCodReceitaController {
 		receitaVO.setId(Integer.parseInt(cmbCodigo.getText())); 
 		ControladoraReceita controladoraReceita = new ControladoraReceita();
 		ReceitaVO idReceita = controladoraReceita.consultarReceitaController(receitaVO);
-	
+		
+		
 		txtCodUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
-		txtNomeUsuario.setText("Falta fazer a pesquisa do nome");
+		// txtNomeUsuario.setText("Falta fazer a pesquisa do nome");
+		txtNomeUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
 		txtDescricao.setText(idReceita.getDescricao());
 		txtData.setText(formatter.format(idReceita.getDateReceita()));
 		txtValor.setText(Double.toString(idReceita.getValor()));
