@@ -110,9 +110,6 @@ public class FXMLUsuarioConsultarUmController implements Initializable{
 		txtNome.setText(usuario.getNome());
 		txtCPF.setText(usuario.getCpf());
 		txtLogin.setText(usuario.getLogin());
-		
-		
-		
 	}
 	// Event Listener on Button[#btnVoltar].onAction
 	@FXML

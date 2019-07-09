@@ -14,9 +14,7 @@ import javafx.stage.Stage;
 import model.vo.UsuarioVO;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-
 import java.io.IOException;
-
 import controller.ControladoraUsuario;
 import javafx.event.ActionEvent;
 
