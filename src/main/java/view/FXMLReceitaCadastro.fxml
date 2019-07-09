@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -8,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLReceitaController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLReceitaCadastroController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -57,38 +61,36 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="614.0" prefWidth="551.0" style="-fx-background-color: #e1e5ee;" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="btnCadastrar" layoutX="213.0" layoutY="212.0" mnemonicParsing="false" onAction="#loadCadastrarReceita" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Text fill="#2a324b" layoutX="163.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU RECEITA" textAlignment="CENTER" wrappingWidth="261.2410888671875">
+                        <Text fill="#2a324b" layoutX="161.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Receita" wrappingWidth="308.2410888671875">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnConsultarCodReceita" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" onAction="#loadConsultarReceitaPorCodigo" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar por Código" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnAtualizar" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadAtualizarReceita" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnExcluir" layoutX="213.0" layoutY="415.0" mnemonicParsing="false" onAction="#loadExcluirReceita" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Excluir" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnConsultarReceitaUsuario" layoutX="213.0" layoutY="313.0" mnemonicParsing="false" onAction="#loadConsultarReceitaPorUsuario" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Consultar por Usuário" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
                         <AnchorPane layoutX="-63.0" layoutY="4.0" prefHeight="45.0" prefWidth="657.0" style="-fx-background-color: #2a324b;" />
                         <AnchorPane layoutX="-61.0" layoutY="570.0" prefHeight="45.0" prefWidth="655.0" style="-fx-background-color: #2a324b;" />
+                        <TextField id="txtID" fx:id="txtID" layoutX="95.0" layoutY="193.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. do Usuário" />
+                        <TextField fx:id="txtDescricao" layoutX="95.0" layoutY="246.0" prefHeight="25.0" prefWidth="402.0" promptText="Digite a descrição da Receita" />
+                        <Text fx:id="lblID" layoutX="98.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Usuário" />
+                        <Text fx:id="lblDescricao" layoutX="99.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="65.63671875" />
+                        <Text fx:id="lblData" layoutX="99.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" />
+                        <Text fx:id="lblValor" layoutX="348.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
+                        <Button fx:id="btnCadastrarUsuario" layoutX="369.0" layoutY="507.0" mnemonicParsing="false" onAction="#cadastrarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnVoltar" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#voltarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Voltar" textFill="#e1e5ee">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <DatePicker fx:id="txtData" layoutX="95.0" layoutY="297.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
+                        <ImageView fitHeight="82.0" fitWidth="85.0" layoutX="42.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://github.com/eiywomc/DrMiseravel/blob/master/receita.png?raw=true" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="txtValor" layoutX="348.0" layoutY="297.0" promptText="Digite o Valor" />
                      </children></AnchorPane>
                </children>
             </GridPane>
