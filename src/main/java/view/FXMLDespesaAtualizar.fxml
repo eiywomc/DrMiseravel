@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLRelatorioController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLReceitaAtualizarController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -58,38 +59,35 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="614.0" prefWidth="551.0" style="-fx-background-color: #e1e5ee;" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="btnTotalReceitas" layoutX="221.0" layoutY="308.0" mnemonicParsing="false" onAction="#totalReceitas" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text=" Total de Receitas" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Text fill="#2a324b" layoutX="187.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Relatório TESTE" textAlignment="CENTER" wrappingWidth="261.2410888671875">
+                        <Text fill="#2a324b" layoutX="161.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atualizar Despesa" wrappingWidth="308.2410888671875">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
                         <AnchorPane layoutX="-63.0" layoutY="4.0" prefHeight="45.0" prefWidth="657.0" style="-fx-background-color: #2a324b;" />
                         <AnchorPane layoutX="-61.0" layoutY="570.0" prefHeight="45.0" prefWidth="655.0" style="-fx-background-color: #2a324b;" />
-                        <TextField fx:id="txtNomeArquivo" layoutX="203.0" layoutY="238.0" prefHeight="25.0" prefWidth="196.0" promptText="Digite o nome do Arquivo" />
-                        <Text layoutX="209.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Arquivo:" />
-                        <Button fx:id="btnTotalDespesas" layoutX="221.0" layoutY="394.0" mnemonicParsing="false" onAction="#totalDespesas" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text=" Total de Despesas" textFill="#e1e5ee">
+                        <TextField id="txtID" fx:id="txtCodUsuario" layoutX="95.0" layoutY="246.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. do Usuário" />
+                        <TextField fx:id="txtDescricao" layoutX="95.0" layoutY="299.0" prefHeight="25.0" prefWidth="402.0" promptText="Digite a descrição da Despesa" />
+                        <Text fx:id="lblCodUsuario" layoutX="98.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Usuário" />
+                        <Text fx:id="lblDescricao" layoutX="99.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="65.63671875" />
+                        <Text fx:id="lblData" layoutX="99.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" />
+                        <Text fx:id="lblValor" layoutX="348.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
+                        <Button fx:id="btnAtualizarReceita" layoutX="355.0" layoutY="507.0" mnemonicParsing="false" onAction="#atualizarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Text layoutX="211.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gera em parágrafos soltos no PDF" />
-                        <Text layoutX="240.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gera em tabela no PDF" />
-                        <Button fx:id="btnSaldoTotal" layoutX="221.0" layoutY="454.0" mnemonicParsing="false" onAction="#saldoTotal" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Saldo total" textFill="#e1e5ee">
+                        <Button fx:id="btnVoltar" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#voltarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Voltar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnSaldoTotal1" layoutX="36.0" layoutY="394.0" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="TesteCategoria" textFill="#e1e5ee">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                     </children></AnchorPane>
+                        <DatePicker fx:id="txtData" layoutX="95.0" layoutY="350.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
+                        <TextField fx:id="txtValor" layoutX="348.0" layoutY="350.0" promptText="Digite o Valor" />
+                        <Text fx:id="lblCodReceita" layoutX="100.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código da Despesa" />
+                        <TextField id="txtID" fx:id="txtCodReceita" layoutX="96.0" layoutY="189.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. da Despesa" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
          </children>
