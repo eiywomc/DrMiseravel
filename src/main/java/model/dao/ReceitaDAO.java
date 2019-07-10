@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
-
-import model.vo.DespesaVO;
 import model.vo.ReceitaVO;
 import model.vo.UsuarioVO;
 
