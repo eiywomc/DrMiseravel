@@ -159,7 +159,12 @@ public class DespesaDAO {
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
 		DespesaVO despesa = new DespesaVO();
-		String query = "SELECT iddespesa, idusuario, descricao, valor, datavencimento, datapagamento, "
+		String query = "SELECT iddespesa,"
+				+ " idusuario,"
+				+ " descricao,"
+				+ " valor,"
+				+ " datavencimento,"
+				+ " datapagamento, "
 				+ "categoria  FROM despesa WHERE iddespesa ="+despesaVO.getId();
 		try {
 			resultado = stmt.executeQuery(query);
@@ -171,7 +176,7 @@ public class DespesaDAO {
 				despesa.setValor(resultado.getDouble(4));
 				despesa.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDate));
 				if (resultado.getString(6) != null) {
-					despesaVO.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDate));
+					despesa.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDate));
 				} 
 				despesaVO.setCategoria(resultado.getString(7));
 				despesa.setCategoria(resultado.getString(7));
