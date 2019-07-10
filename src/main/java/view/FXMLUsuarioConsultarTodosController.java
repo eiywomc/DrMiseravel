@@ -62,15 +62,8 @@ public class FXMLUsuarioConsultarTodosController implements Initializable{
 		clnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
 		clnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		
-		
-		
-		
 		tblTabela.setItems(observableListUsuarios);
-		
-		
-		
-		
-		
+
 		
 	}
 	
