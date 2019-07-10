@@ -25,8 +25,7 @@ public class UsuarioBO {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Dr. Muquirana");
 				alert.setHeaderText("Sucesso ao cadastrar usuário.");
-				alert.setContentText("Operação bem sucedida.");
-				
+				alert.setContentText("Operação bem sucedida.");		
 				alert.showAndWait();
 			} else {
 				System.out.println("\nNão foi possível cadastrar o usuário.");
@@ -40,7 +39,11 @@ public class UsuarioBO {
 		if (usuarioDAO.verificarRegistroPorIdUsuario(usuarioVO.getIdUsuario())) {
 			int resultado = usuarioDAO.excluirUsuarioDAO(usuarioVO);
 			if (resultado == 1) {
-				System.out.println("\nUsuário excluído com sucesso.");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Dr. Muquirana");
+				alert.setHeaderText("Sucesso ao excluir usuário.");
+				alert.setContentText("Operação bem sucedida.");		
+				alert.showAndWait();
 			} else {
 				System.out.println("\nNão foi possível excluir o usuário.");
 			}
@@ -55,7 +58,11 @@ public class UsuarioBO {
 		if (usuarioDAO.verificarRegistroPorIdUsuario(usuarioVO.getIdUsuario())) {
 			int resultado = usuarioDAO.atualizarUsuarioDAO(usuarioVO);
 			if (resultado == 1) {
-				System.out.println("\nUsuário atualizado com sucesso.");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Dr. Muquirana");
+				alert.setHeaderText("Sucesso ao atualizar usuário.");
+				alert.setContentText("Operação bem sucedida.");		
+				alert.showAndWait();
 			} else {
 				System.out.println("\nNão foi possível atualizar o usuário.");
 			}

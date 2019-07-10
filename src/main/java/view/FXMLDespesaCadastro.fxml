@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLReceitaCadastroController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLDespesaCadastroController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -67,13 +68,13 @@
                         </Text>
                         <AnchorPane layoutX="-63.0" layoutY="4.0" prefHeight="45.0" prefWidth="657.0" style="-fx-background-color: #2a324b;" />
                         <AnchorPane layoutX="-61.0" layoutY="570.0" prefHeight="45.0" prefWidth="655.0" style="-fx-background-color: #2a324b;" />
-                        <TextField id="txtID" fx:id="txtID" layoutX="95.0" layoutY="193.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. do Usuário" />
+                        <TextField id="txtID" fx:id="txtCodigo" layoutX="95.0" layoutY="193.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. do Usuário" />
                         <TextField fx:id="txtDescricao" layoutX="95.0" layoutY="246.0" prefHeight="25.0" prefWidth="402.0" promptText="Digite a descrição da Despesa" />
                         <Text fx:id="lblID" layoutX="98.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Usuário" />
                         <Text fx:id="lblDescricao" layoutX="99.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="65.63671875" />
                         <Text fx:id="lblData" layoutX="99.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" />
                         <Text fx:id="lblValor" layoutX="348.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
-                        <Button fx:id="btnCadastrarUsuario" layoutX="369.0" layoutY="507.0" mnemonicParsing="false" onAction="#cadastrarDespesa" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
+                        <Button fx:id="btnCadastrarDespesa" layoutX="369.0" layoutY="507.0" mnemonicParsing="false" onAction="#cadastrarDespesa" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -86,11 +87,14 @@
                         <DatePicker fx:id="txtData" layoutX="95.0" layoutY="297.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
                         <TextField fx:id="txtValor" layoutX="348.0" layoutY="297.0" promptText="Digite o Valor" />
                         <Text fx:id="lblID1" layoutX="275.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
-                        <ComboBox fx:id="txtCategoria" editable="true" layoutX="273.0" layoutY="193.0" prefWidth="150.0" promptText="Selecionar Categoria" />
-                        <Button fx:id="btnCategorias" layoutX="427.0" layoutY="193.0" mnemonicParsing="false" onAction="#abrirCategorias" prefHeight="17.0" prefWidth="75.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Categorias" textFill="#e1e5ee">
+                        <ComboBox fx:id="cmbCategoria" editable="true" layoutX="273.0" layoutY="193.0" prefWidth="150.0" promptText="Selecionar Categoria">
+                           <tooltip>
+                              <Tooltip text="Clique a direita para adicionar categorias." />
+                           </tooltip></ComboBox>
+                        <Button fx:id="btnCategoria" layoutX="427.0" layoutY="193.0" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="17.0" prefWidth="75.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Categorias" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="11.0" />
-                           </font>
+                           </font>f
                         </Button>
                      </children>
                   </AnchorPane>

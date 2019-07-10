@@ -38,17 +38,27 @@ public class CategoriaBO {
 
 	public void excluirCategoriaBO(CategoriaVO categoriaVO) {
 		CategoriaDAO categoriaDAO = new CategoriaDAO();
-//		int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
-//		if (categoriaDAO.verificarRegistroPorDescricap(categoriaVO.getDescricao())) {
-//			int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
-//			if (resultado == 1) {
-//				System.out.println("\nCategoria excluído com sucesso.");
-//			} else {
-//				System.out.println("\nNão foi possível excluir a categoria.");
-//			}
-//		} else {
-//			System.out.println("\nCategoria não existe na base de dados.");
-//		}
+		//int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
+		if (categoriaDAO.verificarRegistroPorDescricao(categoriaVO.getDescricao())) {
+			int resultado = categoriaDAO.excluirCategoriaDAO(categoriaVO);
+			if (resultado == 1) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Erro - Dr. Muquirana");
+				alert.setHeaderText("Succeso ao excluir categoria.");
+				alert.setContentText("Categoria excluída.");
+
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Erro - Dr. Muquirana");
+				alert.setHeaderText("Erro ao excluir categoria.");
+				alert.setContentText("Algo deu errado.");
+
+				alert.showAndWait();
+			}
+		} else {
+			System.out.println("\nCategoria não existe na base de dados.");
+		}
 
 	}
 
