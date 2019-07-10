@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.dto.LancamentoUsuarioDTO;
@@ -16,6 +17,8 @@ import javafx.scene.control.TextField;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -51,6 +54,7 @@ import controller.ControladoraRelatorio;
 import javafx.event.ActionEvent;
 
 public class FXMLRelatorioController {
+	DateTimeFormatter formataDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	@FXML
 	private Button btnUsuario;
 	@FXML
@@ -65,6 +69,11 @@ public class FXMLRelatorioController {
 	private Button btnTotalReceitas;
 	@FXML
 	private TextField txtNomeArquivo;
+	@FXML
+	private DatePicker txtInicial;
+	@FXML
+	private DatePicker txtFinal;
+	
 
 	public void loadUsuario(ActionEvent event) throws IOException {
 		Parent parent = FXMLLoader.load(getClass().getResource("FXMLUsuario.fxml"));
@@ -117,12 +126,15 @@ public class FXMLRelatorioController {
 	// Event Listener on Button[#btnTotalReceitas].onAction
 	@FXML
 	public void totalReceitas(ActionEvent event) {
+		//converter double para Reais
+		Locale ptBr = new Locale("pt", "BR");
+				
 		/* O itext ao gerar um pdf com mesmo nome de arquivo simplesmente substitui,
 		* para resolver isso utiliza-se a hora do computador para botar no fim do no
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "Receitas_"+txtNomeArquivo.getText()+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -133,18 +145,78 @@ public class FXMLRelatorioController {
 		
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
+			
 
-			document.addAuthor("MSiqueira");
-			document.addHeader("Dr. Miseravel", "Total de Receitas");
 			document.addTitle("Total Receitas");
 			document.open();
-			Paragraph header = new Paragraph("Id__NOME____________VALOR_TOTAL");
-			document.add(header);
-			// preenche pdf em paragrafos. sera trocado por tabelas para melhor formatação
+			// cria padrão de fonte para título
+			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
+			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph vazio = new Paragraph(" "); 
+			Paragraph h2 = new Paragraph("TOTAL DE RECEIAS");
+			//centraliza cabeçalho 
+			h1.setAlignment(Element.ALIGN_CENTER);
+			h2.setAlignment(Element.ALIGN_CENTER);
+			document.add(h1);
+			document.add(vazio);
+			document.add(h2);
+			// cria tabela
+			// cria cabecalho da table
+		    PdfPTable tabela = new PdfPTable(3);
+		    tabela.setWidthPercentage(400 / 5.23f);
+		    tabela.setWidths(new int[]{1, 3, 2});
+		    
+
+		    
+		    // insere titulo da tabela
+		    //Paragraph t1 = new Paragraph("Table 1");
+		    PdfPCell cell;
+
+	        document.add(vazio);
+	        document.add(vazio);
+	        document.add(vazio);
+	        
+	        Font boldBranca = new Font(FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+
+	        
+	        cell = new PdfPCell();
+	        cell.setColspan(3);
+//	        cell.setRowspan(2);
+	        cell = new PdfPCell(new Paragraph("  ID", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Nome", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Total Receitas", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        			// preenche celulas da tabela
 			for(int i = 0; i < listaLancamentosUsuarioDTO.size(); i++) {
-				Paragraph para = new Paragraph(listaLancamentosUsuarioDTO.get(i).imprimir());
-				document.add(para);
+		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaLancamentosUsuarioDTO.get(i).getIdUsuario())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+listaLancamentosUsuarioDTO.get(i).getNome()));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaLancamentosUsuarioDTO.get(i).getValor())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
 			}
+			document.add(tabela);
+			
+			document.add(vazio);
+
+			document.add(vazio);
+			Paragraph bottom = new Paragraph("Total de linhas: "+ listaLancamentosUsuarioDTO.size() + ".");
+			bottom.setAlignment(Element.ALIGN_CENTER);
+			Paragraph bottom2 = new Paragraph(" ");
+			bottom2.setAlignment(Element.ALIGN_CENTER);
+			document.add(bottom);
+			document.add(bottom2);
+			
+			
+			
 			
 			//gera aviso que o pdf foi gerado.
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -174,11 +246,11 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "Despesas_"+txtNomeArquivo.getText()+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
-		ArrayList<LancamentoUsuarioDTO> listaLancamentosUsuarioDTO = controladoraRelatorio.gerarRelatorioTotalReceitasUsuarioController();
+		ArrayList<LancamentoUsuarioDTO> listaLancamentosUsuarioDTO = controladoraRelatorio.gerarRelatorioTotalDespesasUsuarioController();
 				
 		// Cria documento com o tamanho desejado
 		Document document = new Document(PageSize.A4);
@@ -387,7 +459,7 @@ public class FXMLRelatorioController {
 			//gera aviso que o pdf foi gerado.
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Relatório - Dr. Muquirana");
-			alert.setHeaderText("Arquivo "+txtNomeArquivo.getText()+".pdf Gerado.");
+			alert.setHeaderText("Arquivo "+nomeArquivo+" gerado.");
 			alert.setContentText("Operação bem sucedida");
 
 			alert.showAndWait();
@@ -400,5 +472,251 @@ public class FXMLRelatorioController {
 		document.close();
 		
 
+	}
+	
+	public void parcialReceitas(ActionEvent event) {
+		
+		//converter double para Reais
+		Locale ptBr = new Locale("pt", "BR");
+				
+		/* O itext ao gerar um pdf com mesmo nome de arquivo simplesmente substitui,
+		* para resolver isso utiliza-se a hora do computador para botar no fim do no
+		* do arquivo para cada arquivo ser unico pelo contexto necessario.
+		*/
+		String idArquivo = String.valueOf(System.currentTimeMillis());
+		String nomeArquivo = "ParcialReceita_"+idArquivo+".pdf";
+		
+		
+		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
+		LancamentoUsuarioDTO lancamentoUsuarioDTO = new LancamentoUsuarioDTO();
+		lancamentoUsuarioDTO.setDataInicioPesquisa(txtInicial.getValue());
+		
+		lancamentoUsuarioDTO.setDataFimPesquisa(txtFinal.getValue());
+		
+		ArrayList<LancamentoUsuarioDTO> listaLancamentosUsuarioDTO = controladoraRelatorio.gerarRelatorioTotalReceitasUsuariosPorPeriodoController(lancamentoUsuarioDTO);
+		
+				
+		// Cria documento com o tamanho desejado
+		Document document = new Document(PageSize.A4);
+		
+		try {
+			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
+			
+
+			document.addTitle("Total Receitas por período.");
+			document.open();
+			// cria padrão de fonte para título
+			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
+			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph vazio = new Paragraph(" "); 
+			Paragraph h2 = new Paragraph("TOTAL DE RECEITAS POR PERÍODO");
+			//centraliza cabeçalho 
+			h1.setAlignment(Element.ALIGN_CENTER);
+			h2.setAlignment(Element.ALIGN_CENTER);
+			document.add(h1);
+			document.add(vazio);
+			document.add(h2);
+			Paragraph h3 = new Paragraph("Período de " + txtInicial.getValue().format(formataDate) + " a "+txtFinal.getValue().format(formataDate)+".");
+			h3.setAlignment(Element.ALIGN_CENTER);
+			document.add(h3);
+			// cria tabela
+			// cria cabecalho da table
+		    PdfPTable tabela = new PdfPTable(3);
+		    tabela.setWidthPercentage(500 / 5.23f);
+		    tabela.setWidths(new int[]{1, 3, 2});
+		    
+
+		    
+		    // insere titulo da tabela
+		    //Paragraph t1 = new Paragraph("Table 1");
+		    PdfPCell cell;
+
+	        document.add(vazio);
+	        document.add(vazio);
+	        document.add(vazio);
+	        
+	        Font boldBranca = new Font(FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+
+	        
+	        cell = new PdfPCell();
+	        cell.setColspan(3);
+//	        cell.setRowspan(2);
+	        cell = new PdfPCell(new Paragraph("  ID", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Nome", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Receitas Período", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+
+	        			// preenche celulas da tabela
+			for(int i = 0; i < listaLancamentosUsuarioDTO.size(); i++) {
+		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaLancamentosUsuarioDTO.get(i).getIdUsuario())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+listaLancamentosUsuarioDTO.get(i).getNome()));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaLancamentosUsuarioDTO.get(i).getValor())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+
+		        
+			}
+			document.add(tabela);
+			
+			document.add(vazio);
+
+			document.add(vazio);
+			Paragraph bottom = new Paragraph("Total de linhas: "+ listaLancamentosUsuarioDTO.size() + ".");
+			bottom.setAlignment(Element.ALIGN_CENTER);
+			Paragraph bottom2 = new Paragraph(" ");
+			bottom2.setAlignment(Element.ALIGN_CENTER);
+			document.add(bottom);
+			document.add(bottom2);
+			
+			
+			
+			
+			//gera aviso que o pdf foi gerado.
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Relatório - Dr. Muquirana");
+			alert.setHeaderText("Arquivo "+nomeArquivo+" gerado.");
+			alert.setContentText("Operação bem sucedida");
+
+			alert.showAndWait();
+			
+		}
+		catch(Exception e) {
+			// AtualizarMensagem Erro			
+			System.out.println(e);
+		}
+		document.close();
+		
+	}
+	
+	public void parcialDespesas(ActionEvent event) {
+		
+		//converter double para Reais
+		Locale ptBr = new Locale("pt", "BR");
+				
+		/* O itext ao gerar um pdf com mesmo nome de arquivo simplesmente substitui,
+		* para resolver isso utiliza-se a hora do computador para botar no fim do no
+		* do arquivo para cada arquivo ser unico pelo contexto necessario.
+		*/
+		String idArquivo = String.valueOf(System.currentTimeMillis());
+		String nomeArquivo = "ParcialDesesa_"+idArquivo+".pdf";
+		
+		
+		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
+		LancamentoUsuarioDTO lancamentoUsuarioDTO = new LancamentoUsuarioDTO();
+		lancamentoUsuarioDTO.setDataInicioPesquisa(txtInicial.getValue());
+		
+		lancamentoUsuarioDTO.setDataFimPesquisa(txtFinal.getValue());
+		
+		ArrayList<LancamentoUsuarioDTO> listaLancamentosUsuarioDTO = controladoraRelatorio.gerarRelatorioTotalDespesasUsuariosPorPeriodoController(lancamentoUsuarioDTO);
+		
+				
+		// Cria documento com o tamanho desejado
+		Document document = new Document(PageSize.A4);
+		
+		try {
+			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
+			
+
+			document.addTitle("Total Receitas por período.");
+			document.open();
+			// cria padrão de fonte para título
+			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
+			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph vazio = new Paragraph(" "); 
+			Paragraph h2 = new Paragraph("TOTAL DE RECEITAS POR PERÍODO");
+			//centraliza cabeçalho 
+			h1.setAlignment(Element.ALIGN_CENTER);
+			h2.setAlignment(Element.ALIGN_CENTER);
+			document.add(h1);
+			document.add(vazio);
+			document.add(h2);
+			Paragraph h3 = new Paragraph("Período de " + txtInicial.getValue().format(formataDate) + " a "+txtFinal.getValue().format(formataDate)+".");
+			h3.setAlignment(Element.ALIGN_CENTER);
+			document.add(h3);
+			// cria tabela
+			// cria cabecalho da table
+		    PdfPTable tabela = new PdfPTable(3);
+		    tabela.setWidthPercentage(500 / 5.23f);
+		    tabela.setWidths(new int[]{1, 3, 2});
+		    
+
+		    
+		    // insere titulo da tabela
+		    //Paragraph t1 = new Paragraph("Table 1");
+		    PdfPCell cell;
+
+	        document.add(vazio);
+	        document.add(vazio);
+	        document.add(vazio);
+	        
+	        Font boldBranca = new Font(FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+
+	        
+	        cell = new PdfPCell();
+	        cell.setColspan(3);
+//	        cell.setRowspan(2);
+	        cell = new PdfPCell(new Paragraph("  ID", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Nome", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+	        cell = new PdfPCell(new Paragraph("  Receitas Período", boldBranca));
+	        cell.setBackgroundColor(BaseColor.BLACK);
+	        tabela.addCell(cell);
+
+	        			// preenche celulas da tabela
+			for(int i = 0; i < listaLancamentosUsuarioDTO.size(); i++) {
+		        cell = new PdfPCell(new Paragraph(" "+String.valueOf(listaLancamentosUsuarioDTO.get(i).getIdUsuario())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+listaLancamentosUsuarioDTO.get(i).getNome()));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaLancamentosUsuarioDTO.get(i).getValor())));
+		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		        tabela.addCell(cell);
+
+		        
+			}
+			document.add(tabela);
+			
+			document.add(vazio);
+
+			document.add(vazio);
+			Paragraph bottom = new Paragraph("Total de linhas: "+ listaLancamentosUsuarioDTO.size() + ".");
+			bottom.setAlignment(Element.ALIGN_CENTER);
+			Paragraph bottom2 = new Paragraph(" ");
+			bottom2.setAlignment(Element.ALIGN_CENTER);
+			document.add(bottom);
+			document.add(bottom2);
+			
+			
+			
+			
+			//gera aviso que o pdf foi gerado.
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Relatório - Dr. Muquirana");
+			alert.setHeaderText("Arquivo "+nomeArquivo+" gerado.");
+			alert.setContentText("Operação bem sucedida");
+
+			alert.showAndWait();
+			
+		}
+		catch(Exception e) {
+			// AtualizarMensagem Erro			
+			System.out.println(e);
+		}
+		document.close();
+		
 	}
 }

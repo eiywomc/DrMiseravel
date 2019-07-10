@@ -12,7 +12,7 @@ import model.vo.UsuarioVO;
 import java.time.LocalDate;
 public class DespesaDAO {
 	DateTimeFormatter formataDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+	DateTimeFormatter formataDateFXML = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	
 	public int cadastrarDespesaDAO(DespesaVO despesaVO) {
 
@@ -133,9 +133,9 @@ public class DespesaDAO {
 				despesaVO.setIdUsuario(resultado.getInt(2));
 				despesaVO.setDescricao(resultado.getString(3));
 				despesaVO.setValor(resultado.getDouble(4));
-				despesaVO.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDate));
+				despesaVO.setDataVencimento(LocalDate.parse(resultado.getString(5)));
 				if (resultado.getString(6) != null) {
-					despesaVO.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDate));
+					despesaVO.setDataPagamento(LocalDate.parse(resultado.getString(6)));
 				} 
 				despesaVO.setCategoria(resultado.getString(7));
 				despesasVO.add(despesaVO);
@@ -159,7 +159,12 @@ public class DespesaDAO {
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
 		DespesaVO despesa = new DespesaVO();
-		String query = "SELECT iddespesa, idusuario, descricao, valor, datavencimento, datapagamento, "
+		String query = "SELECT iddespesa,"
+				+ " idusuario,"
+				+ " descricao,"
+				+ " valor,"
+				+ " datavencimento,"
+				+ " datapagamento, "
 				+ "categoria  FROM despesa WHERE iddespesa ="+despesaVO.getId();
 		try {
 			resultado = stmt.executeQuery(query);
@@ -169,9 +174,9 @@ public class DespesaDAO {
 				despesa.setIdUsuario(resultado.getInt(2));
 				despesa.setDescricao(resultado.getString(3));
 				despesa.setValor(resultado.getDouble(4));
-				despesa.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDate));
+				despesa.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDateFXML));
 				if (resultado.getString(6) != null) {
-					despesaVO.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDate));
+					despesa.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDateFXML)); //corrigido.
 				} 
 				despesaVO.setCategoria(resultado.getString(7));
 				despesa.setCategoria(resultado.getString(7));

@@ -9,21 +9,27 @@ import javafx.scene.control.Button;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.vo.DespesaVO;
 import model.vo.ReceitaVO;
 import model.vo.UsuarioVO;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
+import controller.ControladoraDespesa;
 import controller.ControladoraReceita;
-import controller.ControladoraUsuario;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-public class FXMLReceitaExcluirController {
+import javafx.scene.control.TableView;
+
+import javafx.scene.control.TableColumn;
+
+public class FXMLDespesaConsultarIdUsuarioController {
 	@FXML
 	private Button btnUsuario;
 	@FXML
@@ -37,33 +43,23 @@ public class FXMLReceitaExcluirController {
 	@FXML
 	private Button btnVoltar;
 	@FXML
-	private Button btnConsultarReceitaPorCod;
+	private Button btnConsultarDespesaPorIdUsuario;
 	@FXML
-	private TextField cmbCodigo;
+	private TextField txtIdUsuario;
 	@FXML
-	private Text lblCodReceita;
+	private Text lblIdUsuario;
 	@FXML
-	private Text lblNomeUsuario;
+	private TableView<DespesaVO> tblTabela;
 	@FXML
-	private Text lblCodUsuario;
+	private TableColumn<DespesaVO, String> clnIdReceita;
 	@FXML
-	private Text lblDescricao;
+	private TableColumn<DespesaVO, String> clnDescricao;
 	@FXML
-	private Text txtCodUsuario;
+	private TableColumn<DespesaVO, String> clnDataLancamento;
 	@FXML
-	private Text txtDescricao;
+	private TableColumn<DespesaVO, String> clnDataPagamento;
 	@FXML
-	private Text txtNomeUsuario;
-	@FXML
-	private Text lblData;
-	@FXML
-	private Text txtData;
-	@FXML
-	private Text lblValor;
-	@FXML
-	private Text txtValor;
-	@FXML
-	private Button btnConsultarReceitaPorCod1;
+	private TableColumn<DespesaVO, String> clnValor;
 
 	// Event Listener on Button[#btnUsuario].onAction
 	@FXML
@@ -108,51 +104,36 @@ public class FXMLReceitaExcluirController {
 	}
 	// Event Listener on Button[#btnVoltar].onAction
 	@FXML
-	public void voltarReceita(ActionEvent event) throws IOException {
-		Parent parent = FXMLLoader.load(getClass().getResource("FXMLReceita.fxml"));
+	public void voltarDespesa(ActionEvent event) throws IOException {
+		Parent parent = FXMLLoader.load(getClass().getResource("FXMLDespesa.fxml"));
 		Scene scene = new Scene(parent, 800, 600);
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 	}
-	// Event Listener on Button[#btnConsultarReceitaPorCod].onAction
+	// Event Listener on Button[#btnConsultarDespesaPorIdUsuario].onAction
 	@FXML
-	public void consultarReceitaPorCodigo(ActionEvent event) {
-		DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		Locale ptBr = new Locale("pt", "BR");
+	public void consultarDespesaPorIdUsuario(ActionEvent event) {
+		UsuarioVO usuarioVO = new UsuarioVO();
+		usuarioVO.setIdUsuario(Integer.parseInt(txtIdUsuario.getText()));
 		
-		ReceitaVO receitaVO = new ReceitaVO();
-		
-		receitaVO.setId(Integer.parseInt(cmbCodigo.getText())); 
-		ControladoraReceita controladoraReceita = new ControladoraReceita();
-		ReceitaVO idReceita = controladoraReceita.consultarReceitaController(receitaVO);
-		
-		UsuarioVO usuario = new UsuarioVO();
-		
-		usuario.setIdUsuario(idReceita.getIdUsuario());
-		
-		ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
-		usuario = controladoraUsuario.consultarUsuarioCOntroller(usuario);
-		
-		txtCodUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
-		txtNomeUsuario.setText(usuario.getNome());
-		txtDescricao.setText(idReceita.getDescricao());
-		txtData.setText(idReceita.getDateReceita().format(dataFormatter));
-		txtValor.setText(NumberFormat.getCurrencyInstance(ptBr).format(idReceita.getValor()));
-
-		
+		carregarTableViewDespesas(usuarioVO);
 	}
+	private List<DespesaVO> listaDespesasVO = new ArrayList();
+	private ObservableList<DespesaVO> observableListDespesas;
 	
-	// Event Listener on Button[#btnConsultarReceitaPorCod1].onAction
-	@FXML
-	public void excluirReceitaPorCodigo(ActionEvent event) {
+	public void carregarTableViewDespesas(UsuarioVO usuarioVO) {
 		
-			ReceitaVO receitaVO = new ReceitaVO();
-			
-			receitaVO.setId(Integer.parseInt(cmbCodigo.getText()));
-			
-			ControladoraReceita controladoraReceita = new ControladoraReceita();
-			controladoraReceita.excluirDespesaController(receitaVO);	
+		ControladoraDespesa controladoraDespesa = new ControladoraDespesa();
+		listaDespesasVO = controladoraDespesa.consultarUmUsuarioController(usuarioVO);
 		
+		observableListDespesas = FXCollections.observableArrayList(listaDespesasVO);
+		clnIdReceita.setCellValueFactory(new PropertyValueFactory<>("id"));
+		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		clnDataLancamento.setCellValueFactory(new PropertyValueFactory<>("dataVencimento"));
+		clnDataPagamento.setCellValueFactory(new PropertyValueFactory<>("DataPagamento"));
+		clnValor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
+		
+		tblTabela.setItems(observableListDespesas);
 	}
 }

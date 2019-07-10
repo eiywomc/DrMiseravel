@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class Banco {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -26,8 +29,13 @@ public class Banco {
 			System.out.println("Erro: " + e.getMessage());
 			return null;
 		} catch (SQLException e) {
-			System.out.println("Erro ao obter a Connection.");
-			System.out.println("Erro: " + e.getMessage());
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Erro - Dr. Muquirana");
+			alert.setHeaderText("Erro ao conectar com o banca.");
+			alert.setContentText("Descrição:" + e.getMessage());
+
+			alert.showAndWait();
+			
 			return null;
 		}
 	}

@@ -2,6 +2,8 @@ package model.bo;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import model.dao.DespesaDAO;
 import model.vo.DespesaVO;
 import model.vo.UsuarioVO;
@@ -13,7 +15,11 @@ public class DespesaBO {
 
 		int resultado = despesaDAO.cadastrarDespesaDAO(despesaVO);
 		if (resultado == 1) {
-			System.out.println("\nDespesa cadastrada com sucesso.");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Dr. Muquirana");
+			alert.setHeaderText("Sucesso ao cadastrar despesa.");
+			alert.setContentText("Operação bem sucedida.");		
+			alert.showAndWait();
 		} else {
 			System.out.println("\nNão foi possível cadastrar a despesa.");
 		}
@@ -24,7 +30,12 @@ public class DespesaBO {
 		if (despesaDAO.verificarRegistroPorIdDespesa(despesaVO.getId())) {
 			int resultado = despesaDAO.atualizarDespesaDAO(despesaVO);
 			if (resultado == 1) {
-				System.out.println("\nDespesa atualizada com sucesso.");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Sucesso. Dr. Muquirana");
+				alert.setHeaderText("Despesa atualizada.");
+				alert.setContentText("Atualização bem sucedida.");
+
+				alert.showAndWait();
 			} else {
 				System.out.println("\nNão foi possível atualizar a Despesa.");
 			}
@@ -39,7 +50,12 @@ public class DespesaBO {
 		if (despesaDAO.verificarRegistroPorIdDespesa(despesaVO.getId())) {
 			int resultado = despesaDAO.excluirDespesaDAO(despesaVO);
 			if (resultado == 1) {
-				System.out.println("\nDespesa excluída com sucesso.");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Sucesso. Dr. Muquirana");
+				alert.setHeaderText("Despesa Excluída.");
+				alert.setContentText("Exclusão bem sucedida.");
+
+				alert.showAndWait();
 			} else {
 				System.out.println("\nNão foi possível excluir a Despesa.");
 			}
@@ -63,7 +79,12 @@ public class DespesaBO {
 		DespesaDAO despesaDAO = new DespesaDAO();
 		DespesaVO despesa = despesaDAO.consultarDespesaDAO(despesaVO);
 		if (despesaVO == null) {
-			System.out.println("\nDespesa não localizada.");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Erro. Dr. Muquirana");
+			alert.setHeaderText("Despesa não existe.");
+			alert.setContentText("Insira um código de despesa existente.");
+
+			alert.showAndWait();
 		} 
 		return despesa;
 	}
