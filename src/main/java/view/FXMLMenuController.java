@@ -23,7 +23,7 @@ public class FXMLMenuController {
 	private Button btnRelatorio;
 	@FXML
 	private Button brnSobre;
-
+//
 	// Event Listener on Button[#btnUsuario].onAction
 	@FXML
 	public void loadUsuario(ActionEvent event) throws IOException {
