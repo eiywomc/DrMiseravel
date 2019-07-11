@@ -174,9 +174,9 @@ public class DespesaDAO {
 				despesa.setIdUsuario(resultado.getInt(2));
 				despesa.setDescricao(resultado.getString(3));
 				despesa.setValor(resultado.getDouble(4));
-				despesa.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDateFXML));
+				despesa.setDataVencimento(LocalDate.parse(resultado.getString(5), formataDate));
 				if (resultado.getString(6) != null) {
-					despesa.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDateFXML)); //corrigido.
+					despesa.setDataPagamento(LocalDate.parse(resultado.getString(6), formataDate)); //corrigido.
 				} 
 				despesaVO.setCategoria(resultado.getString(7));
 				despesa.setCategoria(resultado.getString(7));

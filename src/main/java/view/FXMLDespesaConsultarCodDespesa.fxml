@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLDespesaConsultarCodDespesaController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLDespesaConsultarCodDespesaController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -108,18 +107,18 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txtCategoria" layoutX="342.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
+                        <Text layoutX="342.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
                         <Text layoutX="342.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Pagamento" />
-                        <Label fx:id="txtCategoria" layoutX="342.0" layoutY="367.0">
+                        <Text fx:id="txtDataPagamento" layoutX="340.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
-                        </Label>
-                        <Label fx:id="txtDataPagamento" layoutX="342.0" layoutY="409.0">
+                        </Text>
+                        <Text fx:id="txtCategoria" layoutX="340.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
-                        </Label>
+                        </Text>
                      </children></AnchorPane>
                </children>
             </GridPane>
