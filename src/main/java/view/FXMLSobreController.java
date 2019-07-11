@@ -6,13 +6,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 
-public class FXMLMenuController {
+public class FXMLSobreController {
 	@FXML
 	private Button btnUsuario;
 	@FXML
@@ -23,7 +25,9 @@ public class FXMLMenuController {
 	private Button btnRelatorio;
 	@FXML
 	private Button brnSobre;
-//
+	@FXML
+	private Text txtIntegrantes;
+
 	// Event Listener on Button[#btnUsuario].onAction
 	@FXML
 	public void loadUsuario(ActionEvent event) throws IOException {
@@ -32,8 +36,6 @@ public class FXMLMenuController {
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
-		
-		//loadConsultarTodos
 	}
 	// Event Listener on Button[#btnReceita].onAction
 	@FXML
@@ -71,4 +73,5 @@ public class FXMLMenuController {
 		window.setScene(scene);
 		window.show();
 	}
+	
 }

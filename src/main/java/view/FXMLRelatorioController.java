@@ -53,6 +53,9 @@ import com.itextpdf.layout.property.TextAlignment;
 import controller.ControladoraRelatorio;
 import javafx.event.ActionEvent;
 
+
+
+
 public class FXMLRelatorioController {
 	DateTimeFormatter formataDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	@FXML
@@ -151,9 +154,9 @@ public class FXMLRelatorioController {
 			document.open();
 			// cria padrão de fonte para título
 			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
-			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph h1 = new Paragraph("Dr. Muquirana - Relatório", f); 
 			Paragraph vazio = new Paragraph(" "); 
-			Paragraph h2 = new Paragraph("TOTAL DE RECEIAS");
+			Paragraph h2 = new Paragraph("TOTAL DE RECEITAS");
 			//centraliza cabeçalho 
 			h1.setAlignment(Element.ALIGN_CENTER);
 			h2.setAlignment(Element.ALIGN_CENTER);
@@ -263,7 +266,7 @@ public class FXMLRelatorioController {
 			document.open();
 			// cria padrão de fonte para título
 			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
-			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph h1 = new Paragraph("Dr. Muquirana - Relatório", f); 
 			Paragraph vazio = new Paragraph(" "); 
 			Paragraph h2 = new Paragraph("TOTAL DE DESPESAS");
 			//centraliza cabeçalho 
@@ -358,7 +361,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "SaldoTotal_"+txtNomeArquivo.getText()+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -372,13 +375,13 @@ public class FXMLRelatorioController {
 			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
 			
 
-			document.addTitle("Total Despesas");
+			document.addTitle("Saldo Total");
 			document.open();
 			// cria padrão de fonte para título
 			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
-			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph h1 = new Paragraph("Dr. Muquirana - Relatório", f); 
 			Paragraph vazio = new Paragraph(" "); 
-			Paragraph h2 = new Paragraph("TOTAL DE DESPESAS");
+			Paragraph h2 = new Paragraph("SALDO TOTAL");
 			//centraliza cabeçalho 
 			h1.setAlignment(Element.ALIGN_CENTER);
 			h2.setAlignment(Element.ALIGN_CENTER);
@@ -438,7 +441,7 @@ public class FXMLRelatorioController {
 		        tabela.addCell(cell);
 		        cell = new PdfPCell(new Paragraph(" "+NumberFormat.getCurrencyInstance(ptBr).format(listaSaldoDTO.get(i).getTotalSaldo())));
 		        if (i %2 != 0 ) cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		        if (listaSaldoDTO.get(i).getTotalSaldo() < 0 ) cell.setBackgroundColor(BaseColor.YELLOW);
+		        
 		        tabela.addCell(cell);
 			}
 			document.add(tabela);
@@ -484,7 +487,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = "ParcialReceita_"+idArquivo+".pdf";
+		String nomeArquivo = "ParcialReceitas_"+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -507,7 +510,7 @@ public class FXMLRelatorioController {
 			document.open();
 			// cria padrão de fonte para título
 			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
-			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph h1 = new Paragraph("Dr. Muquirana - Relatório", f); 
 			Paragraph vazio = new Paragraph(" "); 
 			Paragraph h2 = new Paragraph("TOTAL DE RECEITAS POR PERÍODO");
 			//centraliza cabeçalho 
@@ -607,7 +610,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = "ParcialDesesa_"+idArquivo+".pdf";
+		String nomeArquivo = "ParcialDespessa_"+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -626,13 +629,13 @@ public class FXMLRelatorioController {
 			PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
 			
 
-			document.addTitle("Total Receitas por período.");
+			document.addTitle("Total Despesas por período.");
 			document.open();
 			// cria padrão de fonte para título
 			Font f = new Font(Font.FontFamily.HELVETICA, 20.0f, Font.BOLD);
-			Paragraph h1 = new Paragraph("Dr. Miseravel - Relatório", f); 
+			Paragraph h1 = new Paragraph("Dr. Muquirana - Relatório", f); 
 			Paragraph vazio = new Paragraph(" "); 
-			Paragraph h2 = new Paragraph("TOTAL DE RECEITAS POR PERÍODO");
+			Paragraph h2 = new Paragraph("TOTAL DE DESPESAS POR PERÍODO");
 			//centraliza cabeçalho 
 			h1.setAlignment(Element.ALIGN_CENTER);
 			h2.setAlignment(Element.ALIGN_CENTER);

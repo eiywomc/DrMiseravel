@@ -43,14 +43,14 @@ public class DespesaVO extends LancamentoVO{
 	}
 	public void imprimir() {
 			
-		System.out.printf("%3d %-3d %-37s %-6.2f   %-15s   %-15s   %-15s \n", this.getId(), this.getIdUsuario(), this.getDescricao(), this.getValor(), this.getDataVencimento().format(formataDate), this.verificarDataPagamento(this.getDataPagamento()), this.getCategoria());
+		System.out.printf("%3d %-3d %-37s %-6.2f   %-15s   %-15s   %-15s \n", this.getId(), this.getIdUsuario(), this.getDescricao(), this.getValor(), this.getDataVencimento().format(formataDate), /*this.verificarDataPagamento(*/this.getDataPagamento(), this.getCategoria());
 	}
 	
-	private String verificarDataPagamento(LocalDate dataPagamento) {
-		String resultado = "Não pago";
-		if (dataPagamento != null) {
-			resultado = dataPagamento.toString();
-		}
-		return resultado;
-	}
+//	private String verificarDataPagamento(LocalDate dataPagamento) {
+//		String resultado = "Não pago";
+//		if (dataPagamento != null) {
+//			resultado = dataPagamento.toString();
+//		}
+//		return resultado;
+//	}
 }
