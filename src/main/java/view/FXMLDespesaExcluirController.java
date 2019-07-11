@@ -161,11 +161,10 @@ public class FXMLDespesaExcluirController {
 		txtIdUsuario.setText(Integer.toString(idDespesa.getIdUsuario()));
 		txtNomeUsuario.setText(usuario.getNome());
 		txtDescricao.setText(idDespesa.getDescricao());
-		txtDescricao.setText(idDespesa.getCategoria());
-		txtDataVencimento.setText(idDespesa.getDataVencimento().format(dataFormatter));
+		txtCategoria.setText(idDespesa.getCategoria());
 		txtDataPagamento.setText(idDespesa.getDataPagamento().format(dataFormatter));
+		txtDataVencimento.setText(idDespesa.getDataVencimento().format(dataFormatter));
 		txtValor.setText(NumberFormat.getCurrencyInstance(ptBr).format(idDespesa.getValor()));
-
 	}
 	// Event Listener on Button[#btnExcluirDespesa].onAction
 	@FXML
@@ -338,4 +337,3 @@ public class FXMLDespesaExcluirController {
 	
 >>>>>>> branch 'master' of https://github.com/eiywomc/DrMiseravel.git
 	}  */
-

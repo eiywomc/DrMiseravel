@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLReceitaAtualizarController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLDespesaAtualizarController">
    <children>
       <AnchorPane id="rootPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -70,22 +71,30 @@
                         <TextField fx:id="txtDescricao" layoutX="95.0" layoutY="299.0" prefHeight="25.0" prefWidth="402.0" promptText="Digite a descrição da Despesa" />
                         <Text fx:id="lblCodUsuario" layoutX="98.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Usuário" />
                         <Text fx:id="lblDescricao" layoutX="99.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="65.63671875" />
-                        <Text fx:id="lblData" layoutX="99.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" />
+                        <Text layoutX="99.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Vencimento" />
                         <Text fx:id="lblValor" layoutX="348.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
-                        <Button fx:id="btnAtualizarReceita" layoutX="355.0" layoutY="507.0" mnemonicParsing="false" onAction="#atualizarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
+                        <Button fx:id="btnAtualizarReceita" layoutX="355.0" layoutY="507.0" mnemonicParsing="false" onAction="#atualizarDespesa" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Atualizar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnVoltar" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#voltarReceita" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Voltar" textFill="#e1e5ee">
+                        <Button fx:id="btnVoltar" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#voltarDespesa" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Voltar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <DatePicker fx:id="txtData" layoutX="95.0" layoutY="350.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
+                        <DatePicker fx:id="txtDataVencimento" layoutX="95.0" layoutY="350.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
                         <TextField fx:id="txtValor" layoutX="348.0" layoutY="350.0" promptText="Digite o Valor" />
                         <Text fx:id="lblCodReceita" layoutX="100.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código da Despesa" />
-                        <TextField id="txtID" fx:id="txtCodReceita" layoutX="96.0" layoutY="189.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. da Despesa" />
+                        <TextField id="txtID" fx:id="txtCodDespesa" layoutX="96.0" layoutY="189.0" prefHeight="25.0" prefWidth="149.0" promptText="Digite o Cód. da Despesa" />
+                        <DatePicker fx:id="txtDataPagamento" layoutX="91.0" layoutY="416.0" prefHeight="26.0" prefWidth="144.0" promptText="Selecione a data" />
+                        <Text layoutX="100.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Pagamento" />
+                        <ComboBox fx:id="cmbCategoria" layoutX="347.0" layoutY="417.0" prefWidth="150.0" promptText="Selecionar Categoria" />
+                        <Button fx:id="btnCategoria" layoutX="512.0" layoutY="418.0" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="17.0" prefWidth="75.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Categorias" textFill="#e1e5ee">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>

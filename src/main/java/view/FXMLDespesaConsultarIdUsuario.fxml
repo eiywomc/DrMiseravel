@@ -82,10 +82,11 @@
                         <TableView fx:id="tblTabela" layoutX="35.0" layoutY="245.0" prefHeight="200.0" prefWidth="530.0">
                           <columns>
                             <TableColumn fx:id="clnIdReceita" prefWidth="42.5" text="ID" />
-                            <TableColumn fx:id="clnDescricao" prefWidth="181.33334350585938" text="Descrição" />
-                              <TableColumn fx:id="clnDataLancamento" prefWidth="113.66665649414062" text="Data Vencimento" />
-                              <TableColumn fx:id="clnDataPagamento" prefWidth="113.0" text="Data Pagamento" />
-                              <TableColumn fx:id="clnValor" prefWidth="74.0" text="Valor" />
+                            <TableColumn fx:id="clnDescricao" prefWidth="204.00003051757812" text="Descrição" />
+                              <TableColumn fx:id="clnCategoria" prefWidth="93.99996948242188" text="Categoria" />
+                              <TableColumn fx:id="clnDataLancamento" prefWidth="96.66668701171875" text="DT Vencimento" />
+                              <TableColumn fx:id="clnDataPagamento" prefWidth="89.33331298828125" text="DT Pagamento" />
+                              <TableColumn fx:id="clnValor" prefWidth="76.33331298828125" text="Valor" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
