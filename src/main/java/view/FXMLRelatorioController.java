@@ -71,8 +71,6 @@ public class FXMLRelatorioController {
 	@FXML
 	private Button btnTotalReceitas;
 	@FXML
-	private TextField txtNomeArquivo;
-	@FXML
 	private DatePicker txtInicial;
 	@FXML
 	private DatePicker txtFinal;
@@ -141,7 +139,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = "Receitas_"+txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "Receitas_"+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -228,7 +226,7 @@ public class FXMLRelatorioController {
 			//gera aviso que o pdf foi gerado.
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Relatório - Dr. Muquirana");
-			alert.setHeaderText("Arquivo "+txtNomeArquivo.getText()+".pdf Gerado.");
+			alert.setHeaderText("Arquivo "+".pdf Gerado.");
 			alert.setContentText("Operação bem sucedida");
 
 			alert.showAndWait();
@@ -253,7 +251,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = "Despesas_"+txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "Despesas_"+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();
@@ -340,7 +338,7 @@ public class FXMLRelatorioController {
 			//gera aviso que o pdf foi gerado.
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Relatório - Dr. Muquirana");
-			alert.setHeaderText("Arquivo "+txtNomeArquivo.getText()+".pdf Gerado.");
+			alert.setHeaderText("Arquivo "+".pdf Gerado.");
 			alert.setContentText("Operação bem sucedida");
 
 			alert.showAndWait();
@@ -365,7 +363,7 @@ public class FXMLRelatorioController {
 		* do arquivo para cada arquivo ser unico pelo contexto necessario.
 		*/
 		String idArquivo = String.valueOf(System.currentTimeMillis());
-		String nomeArquivo = "SaldoTotal_"+txtNomeArquivo.getText()+idArquivo+".pdf";
+		String nomeArquivo = "SaldoTotal_"+idArquivo+".pdf";
 		
 		
 		ControladoraRelatorio controladoraRelatorio = new ControladoraRelatorio();

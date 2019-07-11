@@ -13,10 +13,16 @@ import javafx.scene.control.Alert.AlertType;
 public class Banco {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String BANCODADOS = "dbcontrolegastos";
-	private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCODADOS;
-	private static final String USER = "root";
-	private static final String PASSWORD = "";
+	//private static final String BANCODADOS = "dbcontrolegastos";
+	
+	private static final String BANCODADOS = "DBEQUIPE2";
+	//private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCODADOS;
+	private static final String CONEXAO = "jdbc:mysql://172.28.4.67:3306/" + BANCODADOS;
+	
+	//private static final String USER = "root";
+	//private static final String PASSWORD = "";
+	private static final String USER = "EQUIPE2";
+	private static final String PASSWORD = "EQUIPE2";
 	
 	public static Connection getConnection(){
 		try {
@@ -31,7 +37,7 @@ public class Banco {
 		} catch (SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Erro - Dr. Muquirana");
-			alert.setHeaderText("Erro ao conectar com o banca.");
+			alert.setHeaderText("Erro ao conectar com o banco.");
 			alert.setContentText("Descrição:" + e.getMessage());
 
 			alert.showAndWait();
