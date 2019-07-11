@@ -17,7 +17,7 @@ public class Banco {
 	
 	private static final String BANCODADOS = "DBEQUIPE2";
 	//private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCODADOS;
-	private static final String CONEXAO = "jdbc:mysql://172.28.4.67:3306/" + BANCODADOS;
+	private static final String CONEXAO = "jdbc:mysql://10.10.102.216:3306/" + BANCODADOS;
 	
 	//private static final String USER = "root";
 	//private static final String PASSWORD = "";

@@ -168,13 +168,19 @@ public class FXMLDespesaExcluirController {
 	}
 	// Event Listener on Button[#btnExcluirDespesa].onAction
 	@FXML
-	public void excluirDespesaPorCodigo(ActionEvent event) {
+	public void excluirDespesaPorCodigo(ActionEvent event) throws IOException {
 		DespesaVO despesaVO = new DespesaVO();
 		
 		despesaVO.setId(Integer.parseInt(txtCodigoDespesa.getText()));
 		
 		ControladoraDespesa controladoraDespesa = new ControladoraDespesa();
 		controladoraDespesa.excluirDespesaController(despesaVO);
+		
+		Parent parent = FXMLLoader.load(getClass().getResource("FXMLDespesaExcluir.fxml"));
+		Scene scene = new Scene(parent, 800, 600);
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
 	}
 }
 /*		

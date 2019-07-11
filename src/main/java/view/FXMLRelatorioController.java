@@ -711,7 +711,7 @@ public class FXMLRelatorioController {
 			//gera aviso que o pdf foi gerado.
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Relatório - Dr. Muquirana");
-			alert.setHeaderText("Arquivo "+nomeArquivo+" gerado.");
+			alert.setHeaderText("Arquivo "+".pdf gerado.");
 			alert.setContentText("Operação bem sucedida");
 
 			alert.showAndWait();
