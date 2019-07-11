@@ -78,7 +78,7 @@
                         <TextField fx:id="cmbCodigo" layoutX="95.0" layoutY="199.0" prefHeight="25.0" prefWidth="170.0" promptText="Digite o Código da Receita" />
                         <Text fx:id="lblCodReceita" layoutX="98.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código" />
                         <Text fx:id="lblNomeUsuario" layoutX="97.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                        <Text fx:id="lblCodUsuario" layoutX="97.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cód. Usuário" wrappingWidth="75.06104856729507" />
+                        <Text fx:id="lblCodUsuario" layoutX="97.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cód. Usuário" wrappingWidth="112.06104856729507" />
                         <Text fx:id="lblDescricao" layoutX="96.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" />
                         <Text fx:id="txtCodUsuario" layoutX="97.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="170.0">
                            <font>

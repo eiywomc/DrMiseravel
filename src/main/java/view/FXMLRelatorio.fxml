@@ -2,14 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXMLRelatorioController">
    <children>
@@ -72,8 +70,6 @@
                         </Text>
                         <AnchorPane layoutX="-63.0" layoutY="4.0" prefHeight="45.0" prefWidth="657.0" style="-fx-background-color: #2a324b;" />
                         <AnchorPane layoutX="-61.0" layoutY="570.0" prefHeight="45.0" prefWidth="655.0" style="-fx-background-color: #2a324b;" />
-                        <TextField fx:id="txtNomeArquivo" layoutX="36.0" layoutY="76.0" prefHeight="25.0" prefWidth="196.0" promptText="Digite o nome do Arquivo" />
-                        <Text layoutX="36.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Arquivo:" />
                         <Button fx:id="btnTotalDespesas" layoutX="221.0" layoutY="247.0" mnemonicParsing="false" onAction="#totalDespesas" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text=" Total de Despesas" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
