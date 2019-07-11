@@ -53,6 +53,7 @@ import com.itextpdf.layout.property.TextAlignment;
 import controller.ControladoraRelatorio;
 import javafx.event.ActionEvent;
 
+
 public class FXMLRelatorioController {
 	DateTimeFormatter formataDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	@FXML
