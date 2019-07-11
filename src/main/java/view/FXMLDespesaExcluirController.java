@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,21 +10,29 @@ import javafx.scene.control.Button;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.vo.DespesaVO;
 import model.vo.ReceitaVO;
 import model.vo.UsuarioVO;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import controller.ControladoraDespesa;
 import controller.ControladoraReceita;
 import controller.ControladoraUsuario;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 
-public class FXMLReceitaExcluirController {
+import javafx.scene.text.Text;
+
+import javafx.scene.control.TextField;
+
+import javafx.event.ActionEvent;
+
+public class FXMLDespesaExcluirController {
 	@FXML
 	private Button btnUsuario;
 	@FXML
@@ -37,11 +46,11 @@ public class FXMLReceitaExcluirController {
 	@FXML
 	private Button btnVoltar;
 	@FXML
-	private Button btnConsultarReceitaPorCod;
+	private Button btnConsultarDespesa;
 	@FXML
-	private TextField cmbCodigo;
+	private TextField txtCodigoDespesa;
 	@FXML
-	private Text lblCodReceita;
+	private Text lblCodDespesa;
 	@FXML
 	private Text lblNomeUsuario;
 	@FXML
@@ -49,21 +58,31 @@ public class FXMLReceitaExcluirController {
 	@FXML
 	private Text lblDescricao;
 	@FXML
-	private Text txtCodUsuario;
+	private Text txtIdUsuario;
 	@FXML
 	private Text txtDescricao;
 	@FXML
 	private Text txtNomeUsuario;
 	@FXML
-	private Text lblData;
+	private Text lblDataVencimento;
 	@FXML
-	private Text txtData;
+	private Text txtDataVencimento;
 	@FXML
 	private Text lblValor;
 	@FXML
 	private Text txtValor;
 	@FXML
-	private Button btnConsultarReceitaPorCod1;
+	private Button btnExcluirDespesa;
+	@FXML
+	private Text lblIdUsuario;
+	@FXML
+	private Text lblCategoria;
+	@FXML
+	private Text txtCategoria;
+	@FXML
+	private Text lblDataPagamento;
+	@FXML
+	private Text txtDataPagamento;
 
 	// Event Listener on Button[#btnUsuario].onAction
 	@FXML
@@ -119,44 +138,42 @@ public class FXMLReceitaExcluirController {
 		window.setScene(scene);
 		window.show();
 	}
-	// Event Listener on Button[#btnConsultarReceitaPorCod].onAction
+	// Event Listener on Button[#btnConsultarDespesa].onAction
 	@FXML
-	public void consultarReceitaPorCodigo(ActionEvent event) {
+	public void consultarDespesaPorCodigo(ActionEvent event) {
 		DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Locale ptBr = new Locale("pt", "BR");
 		
-		ReceitaVO receitaVO = new ReceitaVO();
+		DespesaVO despesaVO = new DespesaVO();
 		
-		receitaVO.setId(Integer.parseInt(cmbCodigo.getText())); 
-		ControladoraReceita controladoraReceita = new ControladoraReceita();
-		ReceitaVO idReceita = controladoraReceita.consultarReceitaController(receitaVO);
+		despesaVO.setId(Integer.parseInt(txtCodigoDespesa.getText())); 
+		ControladoraDespesa controladoraDespesa = new ControladoraDespesa();
+		DespesaVO idDespesa = controladoraDespesa.consultarDespesaCOntroller(despesaVO);
 		
 		UsuarioVO usuario = new UsuarioVO();
 		
-		usuario.setIdUsuario(idReceita.getIdUsuario());
+		usuario.setIdUsuario(idDespesa.getIdUsuario());
 		
 		ControladoraUsuario controladoraUsuario = new ControladoraUsuario();
 		usuario = controladoraUsuario.consultarUsuarioCOntroller(usuario);
 		
-		txtCodUsuario.setText(Integer.toString(idReceita.getIdUsuario()));
+		txtIdUsuario.setText(Integer.toString(idDespesa.getIdUsuario()));
 		txtNomeUsuario.setText(usuario.getNome());
-		txtDescricao.setText(idReceita.getDescricao());
-		txtData.setText(idReceita.getDateReceita().format(dataFormatter));
-		txtValor.setText(NumberFormat.getCurrencyInstance(ptBr).format(idReceita.getValor()));
+		txtDescricao.setText(idDespesa.getDescricao());
+		txtDescricao.setText(idDespesa.getCategoria());
+		txtDataVencimento.setText(idDespesa.getDataVencimento().format(dataFormatter));
+		txtDataPagamento.setText(idDespesa.getDataPagamento().format(dataFormatter));
+		txtValor.setText(NumberFormat.getCurrencyInstance(ptBr).format(idDespesa.getValor()));
 
-		
 	}
-	
-	// Event Listener on Button[#btnConsultarReceitaPorCod1].onAction
+	// Event Listener on Button[#btnExcluirDespesa].onAction
 	@FXML
-	public void excluirReceitaPorCodigo(ActionEvent event) {
+	public void excluirDespesaPorCodigo(ActionEvent event) {
+		DespesaVO despesaVO = new DespesaVO();
 		
-			ReceitaVO receitaVO = new ReceitaVO();
-			
-			receitaVO.setId(Integer.parseInt(cmbCodigo.getText()));
-			
-			ControladoraReceita controladoraReceita = new ControladoraReceita();
-			controladoraReceita.excluirDespesaController(receitaVO);	
+		despesaVO.setId(Integer.parseInt(txtCodigoDespesa.getText()));
 		
+		ControladoraDespesa controladoraDespesa = new ControladoraDespesa();
+		controladoraDespesa.excluirDespesaController(despesaVO);
 	}
 }

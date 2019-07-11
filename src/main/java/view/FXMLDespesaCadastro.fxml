@@ -72,8 +72,8 @@
                         <TextField fx:id="txtDescricao" layoutX="95.0" layoutY="246.0" prefHeight="25.0" prefWidth="402.0" promptText="Digite a descrição da Despesa" />
                         <Text fx:id="lblID" layoutX="98.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Código do Usuário" />
                         <Text fx:id="lblDescricao" layoutX="99.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="65.63671875" />
-                        <Text fx:id="lblData" layoutX="99.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" />
-                        <Text fx:id="lblValor" layoutX="348.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
+                        <Text fx:id="lblDataVencimento" layoutX="99.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Vencimento" />
+                        <Text fx:id="lblValor" layoutX="99.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor" />
                         <Button fx:id="btnCadastrarDespesa" layoutX="369.0" layoutY="507.0" mnemonicParsing="false" onAction="#cadastrarDespesa" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #2a324b; -fx-opacity: 0.90;" text="Cadastrar" textFill="#e1e5ee">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -84,8 +84,8 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <DatePicker fx:id="txtData" layoutX="95.0" layoutY="297.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
-                        <TextField fx:id="txtValor" layoutX="348.0" layoutY="297.0" promptText="Digite o Valor" />
+                        <DatePicker fx:id="txtDataVencimento" layoutX="95.0" layoutY="300.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
+                        <TextField fx:id="txtValor" layoutX="95.0" layoutY="352.0" promptText="Digite o Valor" />
                         <Text fx:id="lblID1" layoutX="275.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
                         <ComboBox fx:id="cmbCategoria" editable="true" layoutX="273.0" layoutY="193.0" prefWidth="150.0" promptText="Selecionar Categoria">
                            <tooltip>
@@ -96,6 +96,8 @@
                               <Font name="System Bold" size="11.0" />
                            </font>f
                         </Button>
+                        <Text fx:id="lblDataPagamento" layoutX="355.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Pagamento" />
+                        <DatePicker fx:id="txtDataPagamento" layoutX="351.0" layoutY="298.0" prefHeight="25.0" prefWidth="144.0" promptText="Selecione a data " />
                      </children>
                   </AnchorPane>
                </children>

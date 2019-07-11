@@ -146,9 +146,9 @@ public class FXMLReceitaConsultarIdUsuarioController {
 		listaReceitasVO = controladoraReceita.consultarUmUsuarioController(usuarioVO);
 		
 		observableListReceitas = FXCollections.observableArrayList(listaReceitasVO);
-		clnIdReceita.setCellValueFactory(new PropertyValueFactory<>("idReceita"));
+		clnIdReceita.setCellValueFactory(new PropertyValueFactory<>("id"));
 		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-		clnData.setCellValueFactory(new PropertyValueFactory<>("data"));
+		clnData.setCellValueFactory(new PropertyValueFactory<>("dateReceita"));
 		clnValor.setCellValueFactory(new PropertyValueFactory<>("Valor"));
 		
 		tblTabela.setItems(observableListReceitas);
